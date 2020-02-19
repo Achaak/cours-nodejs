@@ -28,6 +28,8 @@
                 var socket = io();
 
                 $("#send-message").on("click", () => {
+                    if($("#message").val() == "") return false
+
                     socket.emit('send-message', {
                         pseudo: pseudo,
                         message: $("#message").val()
@@ -37,6 +39,8 @@
                         pseudo: pseudo,
                         message: $("#message").val()
                     })
+
+                    $("#message").val("")
                 })
 
                 
