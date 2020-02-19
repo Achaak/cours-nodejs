@@ -8,6 +8,7 @@ server.on('request', (req, res) => {
         "Content-type": 'text/html; charset=utf-8'
     })
 
+    // Parse de l'url et recuperation des paramètres d'url
     let query = url.parse(req.url, true).query
 
     if(query.name === undefined)
