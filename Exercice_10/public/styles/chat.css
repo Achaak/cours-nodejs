@@ -1,0 +1,72 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Gill Sans", sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+    padding: 10px;
+    background-color: #1585b5;
+}
+
+#all-messages {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.message-send-ctner {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+}
+    .message-send-ctner textarea {
+        flex: 1;
+        resize: none;
+    }
+    .message-send-ctner textarea:focus {
+        outline:0;
+    }
+    .message-send-ctner #send-message {
+        background-color: #1585b5;
+        color: white;
+        padding: 10px;
+        border: none;
+        font-weight: bold;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 300ms;
+    }
+    .message-send-ctner #send-message:hover {
+        background-color: #09668e;
+    }
+    .message-send-ctner #send-message:focus {
+        outline:0;
+    }
+
+.message-ctner {
+    display: flex;
+    flex-direction: row;
+    background-color: #a8d7ea;
+    border-radius: 15px;
+    padding: 10px;
+    margin: 10px;
+}
+.message-ctner.me {
+    background-color: orange;
+    margin-left: auto;
+}
+    .message-ctner .pseudo {
+        margin-right: 10px;
+        font-weight: bold;
+    }

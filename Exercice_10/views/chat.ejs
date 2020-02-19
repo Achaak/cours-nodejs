@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Chat</title>
+        <link rel="stylesheet" type="text/css" href="/styles/chat.css">
+    </head>
+
+    <body>
+        <h1>Le chat</h1>
+
+        <div id="all-messages">
+
+        </div>
+
+        <div class='message-send-ctner'>
+            <textarea id="message"></textarea>
+            <button id="send-message">Envoyer</button>
+        </div>
+        
+        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+
+        <script>
+            var pseudo = "<%= pseudo %>"
+
+            $(document).ready(function() {
+                // Connexion à socket.io
+                var socket = io();
+
+                $("#send-message").on("click", () => {
+                    socket.emit('send-message', {
+                        pseudo: pseudo,
+                        message: $("#message").val()
+                    });
+
+                    addMessage({
+                        pseudo: pseudo,
+                        message: $("#message").val()
+                    })
+                })
+
+                
+                socket.on('receive-message', (_message) => {
+                    addMessage(_message)
+                });
+            });
+
+            function addMessage(_message) {
+                var _pseudoDOM = $("<div class='pseudo'>"+_message.pseudo+"</div>")
+                var _messageDOM = $("<div class='message'>"+_message.message+"</div>")
+
+                var _blockDOM = $("<div class='message-ctner'></div>")
+                if(_message.pseudo == pseudo) _blockDOM.addClass("me")
+                console.log(_message.pseudo, pseudo)
+                
+                _blockDOM.append(_pseudoDOM)
+                _blockDOM.append(_messageDOM)
+
+                $("#all-messages").append(_blockDOM)
+            }
+        </script>
+    </body>
+</html>

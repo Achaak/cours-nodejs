@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hello world page</title>
+    </head>
+
+    <body>
+        <h1>Hello world</h1>
+        
+        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+
+        <script>
+            $(document).ready(function() {
+                // Connexion à socket.io
+                var socket = io();
+
+                socket.emit('send-message', "Hello world du client");
+
+                
+                socket.on('receive-message', (_message) => {
+                    console.log(_message)
+                });
+            });
+        </script>
+    </body>
+</html>
